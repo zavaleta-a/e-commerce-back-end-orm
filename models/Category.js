@@ -9,15 +9,16 @@ Category.init(
     // define columns
     category_id: {
       type: DataTypes.INTEGER,
-      null: false,
+      allowNull: false,
       primaryKey: true,
       autoIncrement: true,
     },
     category_name: {
       type: DataTypes.STRING,
-      null: false,
+      allowNull: false,
     },
   },
+  console.log("Please enter category name"),
   {
     sequelize,
     timestamps: false,
