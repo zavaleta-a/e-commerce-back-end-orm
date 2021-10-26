@@ -37,6 +37,10 @@ Product.init(
       },
       category_id: {
         // reference the category model's id
+        references: {
+          model: "tag",
+          key:"id",
+        }
       }
     },
 
