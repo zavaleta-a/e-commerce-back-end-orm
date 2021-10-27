@@ -50,14 +50,13 @@ router.put("/:id", (req, res) => {
     where: {
       id: req.params.id,
     },
-  });
-  .then(dbTagData => {
+  }).then((dbTagData) => {
     if (!dbTagData[0]) {
-      res.status(404).json({message: "Tad id not found"});
+      res.status(404).json({ message: "Tad id not found" });
       return;
     }
     res.json(dbTagData);
-  })
+  });
 });
 
 router.delete("/:id", (req, res) => {
@@ -65,8 +64,8 @@ router.delete("/:id", (req, res) => {
   Tag.destroy({
     where: {
       id: req.params.id,
-    }
-  })
+    },
+  });
 });
 
 module.exports = router;

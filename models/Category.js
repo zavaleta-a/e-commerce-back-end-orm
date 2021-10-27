@@ -18,7 +18,7 @@ Category.init(
       allowNull: false,
     },
   },
-  console.log("Please enter category name"),
+
   {
     sequelize,
     timestamps: false,
