@@ -13,7 +13,12 @@ router.get("/", (req, res) => {
         attributes: ["id", "product_name", "price", "stock", "category_id"],
       },
     ],
-  });
+  })
+    .then((dbTagData) => res.json(dbTagData))
+    .catch((err) => {
+      console.log(err);
+      res.status(500).json(err);
+    });
 });
 
 router.get("/:id", (req, res) => {
@@ -29,7 +34,18 @@ router.get("/:id", (req, res) => {
         attributes: ["id", "product_name", "price", "stock", "category_id"],
       },
     ],
-  });
+  })
+    .then((dbTagData) => {
+      if (!dbTagData) {
+        res.status(404).json({ message: "Tag id not found." });
+        return;
+      }
+      res.json(dbTagData);
+    })
+    .catch((err) => {
+      console.log(err);
+      res.status(500).json(err);
+    });
 });
 
 router.post("/", (req, res) => {
@@ -52,7 +68,7 @@ router.put("/:id", (req, res) => {
     },
   }).then((dbTagData) => {
     if (!dbTagData[0]) {
-      res.status(404).json({ message: "Tad id not found" });
+      res.status(404).json({ message: "Tag id not found." });
       return;
     }
     res.json(dbTagData);
@@ -65,7 +81,18 @@ router.delete("/:id", (req, res) => {
     where: {
       id: req.params.id,
     },
-  });
+  })
+    .then((dbTagData) => {
+      if (!dbTagData) {
+        res.status(404).json({ message: "Tag id not found." });
+        return;
+      }
+      res.json(dbTagData);
+    })
+    .catch((err) => {
+      console.log(err);
+      res.status(500).json(err);
+    });
 });
 
 module.exports = router;

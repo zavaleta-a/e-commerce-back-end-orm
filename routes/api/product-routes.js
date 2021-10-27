@@ -18,7 +18,12 @@ router.get("/", (req, res) => {
         attributes: ["tag", "id_name"],
       },
     ],
-  });
+  })
+    .then((dbProductData) => res.json(dbProductData))
+    .catch((err) => {
+      console.log(err);
+      res.status(500).json(err);
+    });
 });
 
 // get one product
@@ -39,7 +44,18 @@ router.get("/:id", (req, res) => {
         attributes: ["id", "tag_name"],
       },
     ],
-  });
+  })
+    .then((dbProductData) => {
+      if (!dbProductData) {
+        res.status(400).json({ message: "Product id not found" });
+        return;
+      }
+      res.json(dbProductData);
+    })
+    .catch((err) => {
+      console.log(err);
+      res.status(500).json(err);
+    });
 });
 
 // create new product
