@@ -42,6 +42,16 @@ Product.init(
         model: "category",
         key: "id",
       },
+<<<<<<< HEAD
+=======
+      category_id: {
+        // reference the category model's id
+        references: {
+          model: "tag",
+          key:"id",
+        }
+      }
+>>>>>>> d23b9fea0296455acc3a29b6de64070e008d1f0e
     },
   },
   console.log("Please enter product info"),
